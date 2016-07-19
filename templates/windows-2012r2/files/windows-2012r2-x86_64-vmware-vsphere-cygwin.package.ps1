@@ -59,6 +59,11 @@ else {
   Write-BoxstarterMessage "No modules were required to be downloaded from the forge $ForgeMods"
 }
 
+# TODO Pause for debugging
+#Write-Host Staring CMD.exe
+#& cmd.exe /c Start cmd.exe
+#Read-Host "Press enter"
+
 # TODO What about custom facts?
 
 Write-BoxStarterMessage "Loading Default User hive to HKLM\DEFUSER..."
@@ -102,6 +107,12 @@ Write-BoxStarterMessage "Puppet Manifest Processing Finished"
 Write-BoxStarterMessage "Unloading Default User hive from HKLM\DEFUSER..."
 & reg unload HKLM\DEFUSER
 
+# TODO Pause for debugging
+#Write-Host Staring CMD.exe
+#& cmd.exe /c Start cmd.exe
+#Read-Host "Press enter"
+
+# Reboot check and action.
 Write-BoxStarterMessage "Test for Reboot....."
 if (Test-PendingReboot) { Invoke-Reboot }
 
