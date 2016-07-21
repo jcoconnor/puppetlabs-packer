@@ -6,6 +6,14 @@ class windows_template::local_group_policies ()
     windows_group_policy::gpupdate { 'GPUpdate':
     }
 
+
+    registry::value { 'DebugPolicies':
+        key   => 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon',
+        value => 'UserEnvDebugLevel',
+        data  => 196610,
+        type  => 'dword'
+    }
+
     windows_group_policy::local::machine { 'DisableServerManagerAtLogon2012':
         key   => 'Software\Policies\Microsoft\Windows\Server\ServerManager',
         value => 'DoNotOpenAtLogon',
@@ -99,15 +107,14 @@ class windows_template::local_group_policies ()
     }
 
     # Disable ability to change home page.
-    windows_group_policy::local::user { 'DisablehomepagePrompt':
+    windows_group_policy::local::user { 'DisableHomePagePrompt':
         key   => 'Software\Policies\Microsoft\Internet Explorer\Control Panel',
         value => 'HomePage',
         data  => 1,
         type  => 'REG_DWORD',
         notify => Windows_group_policy::Gpupdate['GPUpdate'],
     }
-
-    windows_group_policy::local::user { 'EnterhomepagePrompt':
+    windows_group_policy::local::user { 'EnterHomePagePrompt':
         key   => 'Software\Policies\Microsoft\Internet Explorer\Main',
         value => 'Start Page',
         data  => 'about:blank',
