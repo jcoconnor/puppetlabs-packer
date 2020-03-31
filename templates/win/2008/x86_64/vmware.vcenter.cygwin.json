@@ -40,7 +40,7 @@
     "network_card"              : "vmxnet3",
     "boot_order"                : "disk,cdrom",
 
-    "valid_exit_codes"          : "0"
+    "valid_exit_codes"          : "[0]"
   },
 
   "description": "Builds a Windows Server 2008 SP2 template VM for use in VMware. Custom spec needed for this platform",
